@@ -132,4 +132,4 @@ dmypy.json
 DB/
 /Pipfile
 /Pipfile.lock
-
+/CREDENTIALS.json
