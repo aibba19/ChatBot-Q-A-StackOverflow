@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#non aggiungere database e file enviroment 
+DB/
+/Pipfile
+/Pipfile.lock
+/CREDENTIALS.json

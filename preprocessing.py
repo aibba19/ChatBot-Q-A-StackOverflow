@@ -5,11 +5,17 @@ import string
 import nltk 
 import re 
 
+#Da runnare solo la prima volta per scaricare i pacchetti 
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('wordnet')
 
 # With extract corpus we can take the html of the page for retrieving the body of the reviews
 def remove_tags(df):
-    
+    #elimina tutte le parti di codice
     df.replace('((?s)<code>.+?</code>)','',regex= True, inplace= True)
+    #La seguente linea elimina tutte le parole dentro i tag a, dove alcuni potrebbero essere necessari
+    #da testare
     df.replace('((?s)<a href=.+?>.+?</a>)','',regex= True, inplace = True)
     #df.replace('(http.+?</a>)', '' , regex= True, inplace = True ) 
     df.replace('(<.*?>)','',regex=True, inplace = True)
@@ -23,9 +29,7 @@ def remove_tags(df):
     return df
 
 
-#nltk.download('punkt')
-#nltk.download('stopwords')
-#nltk.download('wordnet')
+
 
 def clear_text(txt):
     # Tokenization
