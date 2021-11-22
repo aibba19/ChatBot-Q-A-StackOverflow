@@ -10,17 +10,22 @@ import re
 #nltk.download('stopwords')
 #nltk.download('wordnet')
 
-# With extract corpus we can take the html of the page for retrieving the body of the reviews
+# Passaggio intermedio per pulire il corpo del db dalle parte non utili all'obiettivo 
 def remove_tags(df):
     #elimina tutte le parti di codice
     df.replace('((?s)<code>.+?</code>)','',regex= True, inplace= True)
     #La seguente linea elimina tutte le parole dentro i tag a, dove alcuni potrebbero essere necessari
     #da testare
     df.replace('((?s)<a href=.+?>.+?</a>)','',regex= True, inplace = True)
+    
+    
     #df.replace('(http.+?</a>)', '' , regex= True, inplace = True ) 
-    df.replace('(<.*?>)','',regex=True, inplace = True)
+    df.replace('(<.*?>)',' ',regex=True, inplace = True)
     df.replace('(\.?)','',regex=True, inplace = True )
-    print(df)
+    df.replace('(\n)',' ',regex=True,inplace=True)
+    
+    #print(df)
+    
     #df.apply(lambda text: BeautifulSoup(text, 'html.parser').get_text())
     #for index, value in df.items():
     #    value = re.sub('<.*?>', '', value)
@@ -48,10 +53,11 @@ def clear_text(txt):
     # removing stopwords
     stop_wd = set(stopwords.words('english'))
     final_wds = [w for w in final_wds if w not in stop_wd]
-
+    
+    #skipping lemmatize phase 
     # Lemmatization process
-    lemtz = WordNetLemmatizer()
-    final_wds = [lemtz.lemmatize(w) for w in final_wds]
+    #lemtz = WordNetLemmatizer()
+    #final_wds = [lemtz.lemmatize(w) for w in final_wds]
     final_text = []
 
     for term in final_wds:

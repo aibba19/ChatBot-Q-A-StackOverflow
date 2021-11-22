@@ -34,7 +34,7 @@ def manage_keywords(kwds):
 
     good_match.sort(key=lambda x: x[1], reverse=True)
     # print(good_match[:5])
-    return good_match[:5]
+    return good_match[:10]
 
 def get_word_count_vec(docs):
     #open the csv where stored the .. to use for compute IDF
@@ -77,6 +77,6 @@ def tf_idf(count_world, cvec, phrase):
     #computing the final weights for the words
     weights = np.asarray(tf_idf_vec.mean(axis=0)).ravel().tolist()
     weights_df = pd.DataFrame({'term': cvec.get_feature_names(), 'weight': weights})
-    result = weights_df.sort_values(by='weight', ascending=False).head(5)
+    result = weights_df.sort_values(by='weight', ascending=False).head(8)
     
     return result.values.tolist()

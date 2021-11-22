@@ -18,8 +18,10 @@ def gen_response(txt):
     # Setting number of results for the main process
     n_results = 3
 
-    print("\nKeywords:")
+    print("\nList of document with high similarity:")
+    #Output is a list of tuple lke [["id of the question","similarity score"],...,]
     print(output)
+    
     related_results = []
     
     return output
