@@ -1,5 +1,4 @@
 import pandas as pd
-# import word2vec
 import preprocessing
 import pandas as pd
 import numpy as np
@@ -7,6 +6,9 @@ import numpy as np
 import scipy
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from nltk.corpus import stopwords
+import joblib
+
+
 
 def compute_score(row, vec):
     sc = 0
@@ -24,10 +26,13 @@ def compute_score(row, vec):
 def manage_keywords(kwds):
     score = []
     good_match = []
-    df =  pd.read_csv("DB/questions_cleared.csv", sep=",", low_memory = False, encoding='latin-1')
+    #df =  pd.read_csv("DB/questions_cleared.csv", sep=",", low_memory = False, encoding='latin-1')
+    data = pd.read_csv('DB/Preprocessed_data.csv')
+    data = data["processed_title"]
     
-    for i, row in df.iterrows():
-        tup = str(i), compute_score(row['Body'], kwds)
+    #for i, row in data.iterrows():
+    for i, row in data.iteritems():
+        tup = str(i), compute_score(row, kwds)
         score.append(tup)
         if score[i][1] != 0.0:
             good_match.append(score[i])
@@ -37,11 +42,6 @@ def manage_keywords(kwds):
     return good_match[:10]
 
 def get_word_count_vec(docs):
-    #open the csv where stored the .. to use for compute IDF
-    #df = pd.read_csv("DB/..", delimiter=",")
-    
-    #preprocessing of the ..
-    #docs = df['Body'].apply(lambda x: preprocessing.clear_text(x))
     
     #storing the set of english stopwords
     stopwd = stopwords.words('english')
@@ -64,7 +64,7 @@ def get_word_count_vec(docs):
 def tf_idf(count_world, cvec, phrase):
     
     #preprocessing the phrase
-    clear_phrase = preprocessing.clear_text(phrase);
+    clear_phrase = preprocessing.clear_text(phrase,"tfidf");
 
     #creation of the TfidfTransformer Object,
     #useful for transform a count matrix to a normalized tf or tf-idf representation
