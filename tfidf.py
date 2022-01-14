@@ -4,11 +4,13 @@ import pandas as pd
 import numpy as np
 #import scipy.sparce
 import scipy
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer, TfidfVectorizer
 from nltk.corpus import stopwords
 import joblib
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.metrics.pairwise import linear_kernel
 
-
+from sklearn.metrics.pairwise import cosine_similarity
 
 def compute_score(row, vec):
     sc = 0
@@ -60,7 +62,6 @@ def get_word_count_vec(docs):
     joblib.dump(count_vec, "DB/count_vec.pkl")
     
     
-    
 def tf_idf(count_world, cvec, phrase):
     
     #preprocessing the phrase
@@ -80,3 +81,26 @@ def tf_idf(count_world, cvec, phrase):
     result = weights_df.sort_values(by='weight', ascending=False).head(8)
     
     return result.values.tolist()
+
+    '''
+    
+    allTitleEmb = pd.read_csv('DB/titleEmbeddings.csv').values
+    
+    vectorSearch = np.array([tf_idf_vec])
+    
+    similarityCosine = similarityCosine*(1+0.4*data.score)
+    
+    similarityCosine = pd.Series(cosine_similarity(vectorSearch, allTitleEmb)[0])
+    
+    '''
+    
+def prova(corpus, txt):
+
+    tfidf_vectorizer = TfidfVectorizer()
+    tfidf_matrix_train = tfidf_vectorizer.fit_transform(corpus)
+    tfidf_matrix_test = tfidf_vectorizer.transform(txt)
+
+    cosine_similarities = linear_kernel(tfidf_matrix_train,tfidf_matrix_test).flatten()
+    related_docs_indices = cosine_similarities.argsort()[:-5:-1]
+    
+    return related_docs_indices
