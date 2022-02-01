@@ -10,9 +10,6 @@ import re
 #nltk.download('stopwords')
 #nltk.download('wordnet')
 
-#adding personalized stopwords
-newStopWords = ['def', 'quot']
-stopwords.words('english').extend(newStopWords)
 
 # Passaggio intermedio per pulire il corpo del db dalle parte non utili all'obiettivo 
 def remove_tags(df):
@@ -70,7 +67,7 @@ def clean_ontology(df):
     #df.loc[:,'description'].replace("MBeanAttributeInfo", "merda",regex = True, inplace = True )
     #df.loc[:,'description'] = re.sub(r"([a-z])([A-Z])", r"\g<1> \g<2>", df.loc[:,'description'])
 
-def clear_text(txt, mode):
+def clear_text(txt):
     
     table = str.maketrans(string.punctuation, " "*len(string.punctuation))
     stripped = [txt.translate(table)]
@@ -82,17 +79,20 @@ def clear_text(txt, mode):
 
     # Deleting all non-words
     final_wds = [w for w in tokens if w.isalpha()]
-
+    
+    #adding personalized stopwords
+    stop_words = stopwords.words('english')
+    stop_words.extend(['def', 'quot'])
     
     # removing stopwords
-    stop_wd = set(stopwords.words('english'))
+    stop_wd = set(stop_words)
     final_wds = [w for w in final_wds if w not in stop_wd]
     
-    #skipping lemmatize phase if we are cleaning for tf-idf
-    if (mode == "tfidf"):
-        # Lemmatization process
-        lemtz = WordNetLemmatizer()
-        final_wds = [lemtz.lemmatize(w) for w in final_wds]
+    #Lemmatizer da provare se funziona meglio con o senza 
+   
+    #Lemmatization process
+    #lemtz = WordNetLemmatizer()
+    #final_wds = [lemtz.lemmatize(w) for w in final_wds]
         
     final_text = []
 
