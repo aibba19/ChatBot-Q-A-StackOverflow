@@ -44,15 +44,12 @@ def manage_keywords(kwds):
     return good_match[:10]
 
 def get_word_count_vec(docs):
-    
-    #storing the set of english stopwords
-    stopwd = stopwords.words('english')
-    
+
     docs = docs.tolist()
     
     #creating an instance of CountVectorizer
     # (useful for converting a collection of text documents to a matrix of token counts)
-    count_vec = CountVectorizer(stop_words=stopwd, max_df=0.85)
+    count_vec = CountVectorizer(max_df=0.85)
     
     #wc_matrix are the final term-document matrix whit all the terms of the corpus
     wc_matrix = count_vec.fit_transform(docs)
@@ -65,7 +62,7 @@ def get_word_count_vec(docs):
 def tf_idf(count_world, cvec, phrase):
     
     #preprocessing the phrase
-    clear_phrase = preprocessing.clear_text(phrase,"tfidf");
+    clear_phrase = preprocessing.clear_text(phrase);
 
     #creation of the TfidfTransformer Object,
     #useful for transform a count matrix to a normalized tf or tf-idf representation
