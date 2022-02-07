@@ -114,6 +114,6 @@ def get_results(corpus, txt):
     
     #find the top 5 related documents, using some negative array slicing 
     #most related documents have highest cosine similarity values, hence at the end of the sorted indices array
-    related_docs_indices = cosine_similarities.argsort()[:-5:-1]
+    related_docs_indices = cosine_similarities.argsort()[:-10:-1]
     
     return related_docs_indices
