@@ -5,32 +5,33 @@ import string
 import nltk 
 import re 
 
-#Da runnare solo la prima volta per scaricare i pacchetti 
+#To run only one time if you getting errors from nltk library 
+
 #nltk.download('punkt')
 #nltk.download('stopwords')
 #nltk.download('wordnet')
 
 
-# Passaggio intermedio per pulire il corpo del db dalle parte non utili all'obiettivo 
+#Function to clean the html text from the stack overflow database from the parts that not suit well for our task 
 def remove_tags(df):
-    #elimina tutte le parti di codice
+    
+    
+    #Remove all the codes part 
     df.replace('((?s)<code>.+?</code>)','',regex= True, inplace= True)
     
+    #Remove quote parts 
     df.replace('((?s)<blockquote>.+?</blockquote>)','',regex= True, inplace= True)
-    #La seguente linea elimina tutte le parole dentro i tag a, dove alcuni potrebbero essere necessari
-    #da testare
+    
+    #Remove all links 
     df.replace('((?s)<a href=.+?>.+?</a>)','',regex= True, inplace = True)
     
-    
-    #df.replace('(http.+?</a>)', '' , regex= True, inplace = True ) 
+    #Remove all html tags 
     df.replace('(<.*?>)',' ',regex=True, inplace = True)
-    #df.replace('(\.?)',' ',regex=True, inplace = True )
+    
+    #Replace all \n with a space
     df.replace('(\n)',' ',regex=True,inplace=True)
     
-    #df.replace('(\\)',' ',regex=True,inplace=True)
-    #df.replace('(/)',' ',regex=True,inplace=True)
-    #df.replace('(/)',' ',regex=True,inplace=True)
-    #replace everything between parenthesis ( )
+    #Replace everything between parenthesis ( )
     df.replace('(\((.*?)\))',' ',regex=True,inplace=True)
     
     #Remove next word after def, to eliminate personalized name of functions not needed for processing
@@ -38,37 +39,36 @@ def remove_tags(df):
     
     #Remove the html keyword quot and def 
     df.replace("(/\b($quot)\b/i)",'',regex=True,inplace=True)
-    
     df.replace("(/\b($def)\b/i)",'',regex=True,inplace=True)
+    
     return df
 
+#Function to clear the ontology data retrivied from rdf files 
 def clean_ontology(df):
-   
+    
+    #From the functions name remove the beginning part related to code ontology
     df.loc[:,'function'].replace('(http://rdf.webofcode.org/woc/)','',regex= True, inplace= True)
-    #df.replace('((?s)<code>.+?</code>)','',regex= True, inplace= True)
+    
+    #Replace all \n with a space 
     df.replace('(\n)',' ',regex=True,inplace=True)
-    #df.replace('<p>',' ',regex=True,inplace=True)
+    
     #Delete everything between < > brackets
     df.replace('(<(.*?)\>)','',regex= True, inplace= True)
-    #df.replace('(</code>)','',regex= True, inplace= True)
     
-    #df.replace('((?s)@param.*)')
     #Insert space between lowercase and uppercase character to divide function names as : getAccessibleToken    
     df.loc[:,'description'].replace(r'(([a-z])([A-Z]))',r"\2 \1",regex = True, inplace = True )
     
-    #Elimina tutto quello dopo @ nella descrizione della funzione, visto che rappresenta tipo di ritorno e descrizione parametri che non ci interessano  
+    #Delete everything after @ in the function description, since that represent return type and parameter description not utils for our purpouse
     df.loc[:,'description'].replace('(@.*)','',regex= True, inplace= True)
     
-    #Elimina la descrizione dove è presente una { perchè dai precedenti passi rimangono linee non utili che presentano la parantesi 
+    #Delete descrptions where we find a { because from previous steps we have lines to not use with the parenthesis
     df.loc[:,'description'].replace('((?s).*{.*)','',regex= True, inplace= True)
     
-    
-    #df.loc[:,'description'].replace([r"(\w)([A-Z])g"], r'ciao',regex = True, inplace = True )
-    #df.loc[:,'description'].replace("MBeanAttributeInfo", "merda",regex = True, inplace = True )
-    #df.loc[:,'description'] = re.sub(r"([a-z])([A-Z])", r"\g<1> \g<2>", df.loc[:,'description'])
 
+#Main function to clean the text with NLP technics, it takes as an argument only a phrase
 def clear_text(txt):
     
+    #Remove puntuaction
     table = str.maketrans(string.punctuation, " "*len(string.punctuation))
     stripped = [txt.translate(table)]
     
@@ -88,8 +88,6 @@ def clear_text(txt):
     stop_wd = set(stop_words)
     final_wds = [w for w in final_wds if w not in stop_wd]
     
-    #Lemmatizer da provare se funziona meglio con o senza 
-   
     #Lemmatization process
     #lemtz = WordNetLemmatizer()
     #final_wds = [lemtz.lemmatize(w) for w in final_wds]
