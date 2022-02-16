@@ -7,16 +7,23 @@ StackBot is a telegram bot that allows users to find a possible solution to thei
 
 ### Initialization
 
-0. Run pip install requirements.txt;
+0. Create a python virtual enviroment following the docs https://docs.python.org/3/library/venv.html (we used python 3.9.10 version)
+
+1. Activate the enviroment from command line typing inside the folder where you just created it: pipenv shell
+
+2. Once inside the virtual enviroment Clone the repository with command: git clone https://github.com/aibba19/ChatBot-Q-A-StackOverflow.git
+
+3. Inside the repository folder run: pip install requirements.txt;
+
+4. Open jupyter lab IDE typing: jupyterlab
 
 ### Bot usage 
 
-1. Start the service by running the file main.py;
+1. Start the service by running the file main.ipynb;
 
 2. Once the main is running the service is active, on Telegram you need to search for the bot (@StackBot) and start a chat;
 
 3. To get started, type /start, and follow the bot instructions;
-
 
 ## Project information
 
