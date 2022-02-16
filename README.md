@@ -1,40 +1,52 @@
-# ChatBot-Q-A-StackOverflow
-@authors: Andrea Ibba and Marco Lilliu
+# StackBot
 
-Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
+StackBot is a telegram bot that allows users to find a possible solution to their problem involving the Python world and a possible corresponding Java function. 
 
-### Introduction
-StackBot is a telegram bot that allows users to find a possible solution to their problem using the Python language and a possible solution in Java. The iteration between the user and the bot takes place via a series of questions administered by the bot. Based on the user's answers, the bot displays possible Stackoverflow posts related to the problem specified as input by the user.
+## Setting UP 
 
-### Main NLP features
-The system mainly uses two NLP features:
 
-- Tf-idf (term-frequency / inverse document-frequency);
-- Word2vec; 
-- Preprocessing Data:
-        - StackOverflow Data;
-        - CodeOntology Data.
+### Initialization
 
-*Preprocessing Data*: In this phase, data were processed in order to obtain tokens ready for further work:
+0. Run pip install requirements.txt;
 
- -   StackOverflow: The data obtained by means of a query, using Google's BigQuery service, were subjected to a cleaning process of the HTML components and then, by using NLP techniques, tokenization of the text.
-    - CodeOntology: The data were obtained from a file (comments.nt) on the codeontology.org website. The data was cleaned of RDF components using regex functions and then subjected to text tokenization processes.
+### Bot usage 
 
-*Tf-idf*: 
+1. Start the service by running the file main.py;
 
-*Word2vec*: 
+2. Once the main is running the service is active, on Telegram you need to search for the bot (@StackBot) and start a chat;
+
+3. To get started, type /start, and follow the bot instructions;
+
+
+## Project information
 
 ### Dataset composition
-Updated on a quarterly basis, this BigQuery dataset includes an archive of Stack Overflow content, including posts, votes, tags, and badges. This dataset is updated to mirror the Stack Overflow content on the Internet Archive. More info about the dataset is given at: https://www.kaggle.com/stackoverflow/stackoverflow
 
-To collect the data we need to gather Questions and Answer that were posted on Stack Overflow. Thus what we need are the following:
+*Stack Overflow data* : downloaded from Google BigQuery services, this dataset includes an archive of Stack Overflow content, including posts, votes, tags, and badges. This dataset is updated to mirror the Stack Overflow content on the Internet archive. More info about the dataset is given at: https://www.kaggle.com/stackoverflow/stackoverflow
+
+From all the data we need:
 
 * Title
 * Question body
 * Answers for that question
 * Votes for each answers
 
-We decide to restrict the query only to questions that has 'python' has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word.
+We decide to restrict the query only to questions that has 'python' has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word in the query.
+
+*CodeOntology data* : downloaded from codeontology.org, an RDF file containing Java functions names and their description.
+
+### Main  features
+NLP features implemented in this project are:
+
+*Preprocessing Data*: data were preprocessed using both regex and NLP helping fucntions from Nltk library, in order to obtain tokens ready for further work, creating two new databases, one for stack overflow data and one for ontology data.
+
+*Tf-idf*: short for term frequency–inverse document frequency, can tell you about the relevant importance of a term based upon a document,here used to rank search results based on relevance, with results which are more relevant to the user having higher TF-IDF scores. Don't consider word context.
+
+*Word2vec*: is an algorithm that uses shallow 2-layer, not deep, neural networks to ingest a corpus and produce sets of vectors.
+
+*Cosine similarity*: measure of similarity used here with both tf-idf and word2vec technics.
+
+
 ### Python libraries
 
 nltk &#x2192; Preprocessing text with NLP technics
@@ -50,6 +62,7 @@ regex &#x2192; Cleaning and preprocessing data
 telepot &#x2192; Telegram bot
 sklearn &#x2192; Vectorizer for TF-IDF 
 rdflib &#x2192; Parsing RDF file
+
 ### File and project structure
 
 1 **main.py**: is the main project file, which connects the entire system and makes the bot active;
@@ -72,26 +85,9 @@ rdflib &#x2192; Parsing RDF file
 
 10 **requirements.txt**: there are all the libraries you need to install to run the code;
 
-### Download Data
-
-1. Download the file "credential.json" in the project folder with your Google BigQuery credentials;
-
-2. Download the file "comments.nt" from CodeOntology.org (https://zenodo.org/record/818116#.YgpumO7MK3I);
-
-### Initialization Data
-
-0. Run pip install requirements.txt;
-
-1. Run get_stack_data decommenting the first cell (Google BigQuery);
-
-2. Run get_ontology_data;
-
-3. Run Train_Word2Vec.ipynb;
 
 
-### Usage of the bot
-1. Start the service by running the file main.py;
+Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
 
-2. Once the service is active, on Telegram you need to search for the bot (@StackBot) and start a chat;
-
-3. To get started, type /start, and follow the bot instructions;
+### ChatBot-Q-A-StackOverflow
+@authors: Andrea Ibba and Marco Lilliu

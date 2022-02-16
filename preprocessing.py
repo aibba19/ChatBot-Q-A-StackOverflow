@@ -66,6 +66,14 @@ def clean_ontology(df):
     
 
 #Main function to clean the text with NLP technics, it takes as an argument only a phrase
+#The steps followed to process a piece of raw text are:
+
+#Convert raw text into tokens
+#Convert tokens to lower case
+#Remove punctuations
+#Remove Stopwords
+#Note: We skipped a 'Stemming/Lemmatization' step because we did not want alter the domain specific terms used in our corpus and risk losing precious information
+
 def clear_text(txt):
     
     #Remove puntuaction

@@ -12,21 +12,16 @@ from sklearn.metrics.pairwise import linear_kernel
 
 from sklearn.metrics.pairwise import cosine_similarity
 
-#Create a matrix with the following structure 
-#The tuple represents: (document_id, token_id)
-#The value following the tuple represents the tf-idf score of a given token in a given document
-#The tuples that are not there have a tf-idf score of 0
-def create_matrix(corpus):
-    #Corpus is already preprocessed
-    tfidf_matrix = TfidfVectorizer().fit_transform(corpus)
-    
-    #scipy.sparse.save_npz('DB/tfidf_matrix.npz', tfidf_matrix)
-    return tfidf_matrix
-
 def get_results(corpus, txt):
     
     vectorizer = TfidfVectorizer()
+    
+    #Create a matrix with the following structure 
+    #The tuple represents: (document_id, token_id)
+    #The value following the tuple represents the tf-idf score of a given token in a given document
+    #The tuples that are not there have a tf-idf score of 0
     tfidf_matrix = vectorizer.fit_transform(corpus)
+    
     #Equivalent to CountVectorizer followed by TfidfTransformer.
     txt_vectorize = vectorizer.transform([txt])
     
