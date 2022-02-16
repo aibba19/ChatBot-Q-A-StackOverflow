@@ -9,6 +9,9 @@ google-api-core==2.2.2
 google-auth==2.3.3
 jupyterlab==3.1.18
 numpy==1.21.2
-pip==21.2.4
 regex==2021.10.8
 telepot==12.7
+nbconvert==6.2.0
+jupyterlab==3.1.18
+IPython==7.28.0
+ipykernel==6.4.1
