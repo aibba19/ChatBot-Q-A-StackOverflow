@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 #non aggiungere database e file enviroment 
-DB/
+#DB/
 /Pipfile
 /Pipfile.lock
 /CREDENTIALS.json
