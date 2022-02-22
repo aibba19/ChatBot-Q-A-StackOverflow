@@ -21,7 +21,7 @@ StackBot is a telegram bot that allows users to find a possible solution to thei
 
 1. Start the service by running the file main.ipynb;
 
-2. Once the main is running the service is active, on Telegram you need to search for the bot (@StackBot) and start a chat;
+2. Once the main is running the service is active, on Telegram you need to search for the bot (@StackOverflowNew_bot) and start a chat;
 
 3. To get started, type /start, and follow the bot instructions;
 
@@ -71,19 +71,19 @@ However for simple and popular questions about this field seems work quite good;
 
 ### Python libraries
 
-nltk &#x2192; Preprocessing text with NLP technics
-numpy &#x2192; Powerful tool for matrix operations
-pandas &#x2192; Dataframe management
-scipy &#x2192; Managing NLP tools
-gensim &#x2192; Word2Vec module
-google-api-core &#x2192; Download StackOverflow data
-google-auth &#x2192; Download StackOverflow data
-jupyterlab &#x2192; IDE 
-numpy &#x2192; Powerful tool for matrix operations
-regex &#x2192; Cleaning and preprocessing data
-telepot &#x2192; Telegram bot
-sklearn &#x2192; Vectorizer for TF-IDF 
-rdflib &#x2192; Parsing RDF file
+- **nltk** &#x2192; Preprocessing text with NLP technics;
+- **numpy** &#x2192; Powerful tool for matrix operations
+- **pandas** &#x2192; Dataframe management
+- **scipy** &#x2192; Managing NLP tools
+- **gensim** &#x2192; Word2Vec module
+- **google-api-core** &#x2192; Download StackOverflow data
+- **google-auth** &#x2192; Download StackOverflow data
+- **jupyterlab** &#x2192; IDE 
+- **numpy** &#x2192; Powerful tool for matrix operations
+- **regex** &#x2192; Cleaning and preprocessing data
+- **telepot** &#x2192; Telegram bot
+- **sklearn** &#x2192; Vectorizer for TF-IDF 
+- **rdflib** &#x2192; Parsing RDF file
 
 ### File and project structure
 
