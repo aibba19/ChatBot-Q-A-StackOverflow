@@ -56,7 +56,7 @@ def clean_ontology(df):
     df.replace('(<(.*?)\>)','',regex= True, inplace= True)
     
     #Insert space between lowercase and uppercase character to divide function names as : getAccessibleToken    
-    df.loc[:,'description'].replace(r'(([a-z])([A-Z]))',r"\2 \1",regex = True, inplace = True )
+    df.loc[:,'description'].replace(r'([a-z])([A-Z])',r"\1 \2",regex = True, inplace = True )
     
     #Delete everything after @ in the function description, since that represent return type and parameter description not utils for our purpouse
     df.loc[:,'description'].replace('(@.*)','',regex= True, inplace= True)

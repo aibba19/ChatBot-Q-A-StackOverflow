@@ -25,6 +25,7 @@ StackBot is a telegram bot that allows users to find a possible solution to thei
 
 3. To get started, type /start, and follow the bot instructions;
 
+
 ## Project information
 
 ### Dataset composition
@@ -38,7 +39,6 @@ From all the data we need:
 * Answers for that question
 * Votes for each answers
 
-We decide to restrict the query only to questions that has 'python' has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word in the query.
 
 *CodeOntology data* : downloaded from codeontology.org, an RDF file containing Java functions names and their description.
 
@@ -52,6 +52,21 @@ NLP features implemented in this project are:
 *Word2vec*: is an algorithm that uses shallow 2-layer, not deep, neural networks to ingest a corpus and produce sets of vectors.
 
 *Cosine similarity*: measure of similarity used here with both tf-idf and word2vec technics.
+
+## Example usage 
+
+Note that we decide to restrict the data only to questions that has 'python' has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word in the query that download the original data.
+
+With this project you can try to find a solution for your problem among the Stack Overflow posts using both tecnologies 'word to vec' or 'tf-idf' and and once found a possible solution as a Java function is proposed thanks to the Code Ontology Data. This is meant to try find the solution and confront and evaluate wich tecnlogy is better, for this particular task, than the other one for a given type of input.
+
+In particular the user from the beginning of the interaction with the bot can choose with wich tecnolgy he want to search for the solution; if among the returned results from the first search the users can't find the one that suits his problem he can repeat the search with the other tecnology.
+
+In any time the bot can be restarted by typing the command '/start' to begin a new interaction from scratch.
+
+### Consideration 
+Since this is a project that aim to learn how to implement the different tecnologies and narrows the field to python by considering only the posts that has this ([python]) has a tag, is limitated and can be hard to find solutions for every problem in this field.
+
+However for simple and popular questions about this field seems work quite good; in particular with the tf-idf tecnology we have achieved the best results over the word to vec, even if the word embeddings created with this techinc well represent many semantic features about the context words, that can be used to future developments (in example as an input to a neural networks that classifies phrase about this fields).
 
 
 ### Python libraries
