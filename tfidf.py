@@ -32,4 +32,6 @@ def get_results(corpus, txt):
     #most related documents have highest cosine similarity values, hence at the end of the sorted indices array
     related_docs_indices = cosine_similarities.argsort()[:-5:-1]
     
-    return related_docs_indices
+    similarity_values = cosine_similarities[related_docs_indices]
+    
+    return related_docs_indices,similarity_values
