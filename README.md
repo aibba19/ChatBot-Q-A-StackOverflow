@@ -1,3 +1,8 @@
+Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
+
+### ChatBot-Q-A-StackOverflow
+@authors: Andrea Ibba and Marco Lilliu
+
 # StackBot
 
 StackBot is a telegram bot that allows users to find a possible solution to their problem involving the Python world and a possible corresponding Java function. 
@@ -106,10 +111,3 @@ However for simple and popular questions about this field seems work quite good;
 9 **tfidf.py**: find the first 5 related documents with the highest cosine similarity use TF-IDF technology;
 
 10 **requirements.txt**: there are all the libraries you need to install to run the code;
-
-
-
-Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
-
-### ChatBot-Q-A-StackOverflow
-@authors: Andrea Ibba and Marco Lilliu
