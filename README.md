@@ -1,11 +1,10 @@
-Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
-
-### ChatBot-Q-A-StackOverflow
-@authors: Andrea Ibba and Marco Lilliu
-
 # StackBot
 
 StackBot is a telegram bot that allows users to find a possible solution to their problem involving the Python world and a possible corresponding Java function. 
+
+Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
+
+@authors: Andrea Ibba and Marco Lilliu
 
 ## Setting UP 
 
