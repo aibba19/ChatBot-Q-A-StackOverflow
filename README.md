@@ -17,9 +17,9 @@ Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
 
 2. Once inside the virtual enviroment Clone the repository with command: git clone https://github.com/aibba19/ChatBot-Q-A-StackOverflow.git
 
-3. Inside the repository folder run: pip install requirements.txt;
+3. Inside the repository folder run: pip install -r requirements.txt;
 
-4. Open jupyter lab IDE typing: jupyterlab
+4. Open jupyter lab IDE typing: jupyter lab
 
 ### Bot usage 
 
