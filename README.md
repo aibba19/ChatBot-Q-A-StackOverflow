@@ -19,9 +19,15 @@ Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
 
 3. Inside the repository folder run: pip install -r requirements.txt;
 
-4. Open jupyter lab IDE typing: jupyter lab
+### Download data files
+
+0. Go to this drive link: https://drive.google.com/drive/folders/14Ky9gArKWFlVJfyi_7DPkXo44hFrMwAi?usp=sharing
+
+1. Download the folder DB and move to the project directory
 
 ### Bot usage 
+
+0. From terminal inside the project directory open jupyter lab IDE typing: jupyter lab
 
 1. Start the service by running the file main.ipynb;
 
