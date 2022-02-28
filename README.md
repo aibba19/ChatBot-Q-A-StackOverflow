@@ -2,10 +2,6 @@
 
 StackBot is a telegram bot that allows users to find a possible solution to their problem involving the Python world and a possible corresponding Java function. 
 
-Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
-
-@authors: Andrea Ibba and Marco Lilliu
-
 ## Setting UP 
 
 
@@ -23,7 +19,7 @@ Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
 
 0. Go to this drive link: https://drive.google.com/drive/folders/14Ky9gArKWFlVJfyi_7DPkXo44hFrMwAi?usp=sharing
 
-1. Download the folder DB and move to the project directory
+1. Download the folder DB, unzip it, move it to the project directory
 
 ### Bot usage 
 
@@ -37,6 +33,8 @@ Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
 
 
 ## Project information
+
+Note that we decide to restrict the data only to questions that has 'python' has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word in the query that download the original data.
 
 ### Dataset composition
 
@@ -65,18 +63,32 @@ NLP features implemented in this project are:
 
 ## Example usage 
 
-Note that we decide to restrict the data only to questions that has 'python' has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word in the query that download the original data.
+With this project you can try to find a solution for your problem among the Stack Overflow posts using both tecnologies 'word to vec' or 'tf-idf'; and once found a post that is likely to be the solution to your problem a possible Java function that could do the same in the Java world is proposed thanks to the Code Ontology Data. This is meant to try find the solution and confront and evaluate wich tecnlogy is better, for this particular task, than the other one for a given type of input.
 
-With this project you can try to find a solution for your problem among the Stack Overflow posts using both tecnologies 'word to vec' or 'tf-idf' and and once found a possible solution as a Java function is proposed thanks to the Code Ontology Data. This is meant to try find the solution and confront and evaluate wich tecnlogy is better, for this particular task, than the other one for a given type of input.
-
-In particular the user from the beginning of the interaction with the bot can choose with wich tecnolgy he want to search for the solution; if among the returned results from the first search the users can't find the one that suits his problem he can repeat the search with the other tecnology.
+In particular the user from the beginning of the interaction with the bot can choose with wich tecnolgy he want to search for the solutions; if among the returned results from the first search the users can't find the one that suits his problem he can repeat the search with the other tecnology.
 
 In any time the bot can be restarted by typing the command '/start' to begin a new interaction from scratch.
 
-### Consideration 
-Since this is a project that aim to learn how to implement the different tecnologies and narrows the field to python by considering only the posts that has this ([python]) has a tag, is limitated and can be hard to find solutions for every problem in this field.
+Here an interaction example between user and bot:
 
-However for simple and popular questions about this field seems work quite good; in particular with the tf-idf tecnology we have achieved the best results over the word to vec, even if the word embeddings created with this techinc well represent many semantic features about the context words, that can be used to future developments (in example as an input to a neural networks that classifies phrase about this fields).
+![bot Example](https://user-images.githubusercontent.com/26245452/156027453-b5fc7286-82f4-44f4-a1ac-65cad038325f.png)
+
+
+### Considerations
+
+Since this is an educational project that aim to learn how to implement the different tecnologies and narrows the field to python by considering only the posts that has this ([python]) has a tag, is limitated and can be hard to find solutions for every problem in this field.
+
+However for simple and popular questions about this field seems work quite good.
+
+In the get_results file we can see some tests of both tecnologies. We see that in general the word to vec tecnology seems work slightly better than the tf-idf, since word to vec bases its search also on the context of the words trying in this way to look for a syntactic and semantic similarity between the various concepts, while the tf-idf bases its search only on an exact word match between input string and data.
+
+Here some example results:
+
+![exampleResults](https://user-images.githubusercontent.com/26245452/156019186-858c2c0d-2ad7-420b-9a51-d084b8fdd9f0.png)
+
+For this reason W2V has a slight tolerance to grammatical errors in input, being able for example to represent as similar the words 'django' and 'djnago' as we can see in this image:
+
+![similartermsToDjango](https://user-images.githubusercontent.com/26245452/156018647-855c84ef-5e18-446f-81df-52d1bc291ba0.png)
 
 
 ### Python libraries
@@ -116,3 +128,9 @@ However for simple and popular questions about this field seems work quite good;
 9 **tfidf.py**: find the first 5 related documents with the highest cosine similarity use TF-IDF technology;
 
 10 **requirements.txt**: there are all the libraries you need to install to run the code;
+
+## About
+
+Project for the 2021 AI-NLP course of Università degli Studi di Cagliari.
+
+@authors: Andrea Ibba and Marco Lilliu
