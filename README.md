@@ -4,37 +4,49 @@ StackBot is a telegram bot that allows users to find a possible solution to thei
 
 ## Setting UP 
 
-
-### Initialization
+#### Initialization
 
 0. Create a python virtual enviroment following the docs https://docs.python.org/3/library/venv.html (we used python 3.9.10 version)
 
-1. Activate the enviroment from command line typing inside the folder where you just created it: pipenv shell
+1. Activate the enviroment from command line typing inside the folder where you just created it: *pipenv shell*
 
-2. Once inside the virtual enviroment Clone the repository with command: git clone https://github.com/aibba19/ChatBot-Q-A-StackOverflow.git
+2. Once inside the virtual enviroment Clone the repository with command: *git clone https://github.com/aibba19/ChatBot-Q-A-StackOverflow.git*
 
-3. Inside the repository folder run: pip install -r requirements.txt;
+3. Inside the repository folder run: *pip install -r requirements.txt*
 
-### Download data files
+#### Download data files
 
 0. Go to this drive link: https://drive.google.com/drive/folders/14Ky9gArKWFlVJfyi_7DPkXo44hFrMwAi?usp=sharing
 
 1. Download the folder DB, unzip it, move it to the project directory
 
-### Bot usage 
+#### Bot usage 
 
-0. From terminal inside the project directory open jupyter lab IDE typing: jupyter lab
+0. From terminal inside the project directory open jupyter lab IDE typing: *jupyter lab*
 
-1. Start the service by running the file main.ipynb;
+1. Jupyter will open in your browser, here start the service by running the file *main.ipynb*
 
-2. Once the main is running the service is active, on Telegram you need to search for the bot (@StackOverflowNew_bot) and start a chat;
+2. Once the main is running the service is active, on Telegram you need to search for the bot (@StackOverflowNew_bot) and start a chat
 
-3. To get started, type /start, and follow the bot instructions;
+3. To get started, type /start, and follow the bot instructions
 
+## Example usage 
+
+With this project you can try to find a solution for your problem among the **Stack Overflow posts** using both tecnologies **'word to vec'** or **'tf-idf'**
+
+Once found a post that is likely to be the solution to your problem a possible Java function that could do the same in the Java world is proposed thanks to the Code Ontology Data. 
+
+The user from the beginning of the interaction with the bot can choose with wich tecnolgy he want to search for the solutions; if among the returned results from the first search the users can't find the one that suits his problem he can repeat the search with the other tecnology.
+
+In any time the bot can be restarted by typing the command '/start' to begin a new interaction from scratch.
+
+Here an interaction example between user and bot:
+
+![bot Example](https://user-images.githubusercontent.com/26245452/156027453-b5fc7286-82f4-44f4-a1ac-65cad038325f.png)
 
 ## Project information
 
-Note that we decide to restrict the data only to questions that has 'python' has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word in the query that download the original data.
+Note that we decide to restrict the data only to questions that has **'python'** has a tag, due to the abundance of Q&A in Stack Overflow, to perform better test and try to give more precise answers. However this process can be done over other argument just by changing the LIKE '%python%' word in the query that download the original data.
 
 ### Dataset composition
 
@@ -51,6 +63,7 @@ From all the data we need:
 *CodeOntology data* : downloaded from codeontology.org, an RDF file containing Java functions names and their description.
 
 ### Main  features
+
 NLP features implemented in this project are:
 
 *Preprocessing Data*: data were preprocessed using both regex and NLP helping fucntions from Nltk library, in order to obtain tokens ready for further work, creating two new databases, one for stack overflow data and one for ontology data.
@@ -61,26 +74,14 @@ NLP features implemented in this project are:
 
 *Cosine similarity*: measure of similarity used here with both tf-idf and word2vec technics.
 
-## Example usage 
-
-With this project you can try to find a solution for your problem among the Stack Overflow posts using both tecnologies 'word to vec' or 'tf-idf'; and once found a post that is likely to be the solution to your problem a possible Java function that could do the same in the Java world is proposed thanks to the Code Ontology Data. This is meant to try find the solution and confront and evaluate wich tecnlogy is better, for this particular task, than the other one for a given type of input.
-
-In particular the user from the beginning of the interaction with the bot can choose with wich tecnolgy he want to search for the solutions; if among the returned results from the first search the users can't find the one that suits his problem he can repeat the search with the other tecnology.
-
-In any time the bot can be restarted by typing the command '/start' to begin a new interaction from scratch.
-
-Here an interaction example between user and bot:
-
-![bot Example](https://user-images.githubusercontent.com/26245452/156027453-b5fc7286-82f4-44f4-a1ac-65cad038325f.png)
-
 
 ### Considerations
 
-Since this is an educational project that aim to learn how to implement the different tecnologies and narrows the field to python by considering only the posts that has this ([python]) has a tag, is limitated and can be hard to find solutions for every problem in this field.
+Since this is an **educational project** that aim to learn how to implement the different tecnologies and narrows the field to python by considering only the posts that has this ([python]) has a tag, is limitated and can be hard to find solutions for every problem in this field.
 
 However for simple and popular questions about this field seems work quite good.
 
-In the get_results file we can see some tests of both tecnologies. We see that in general the word to vec tecnology seems work slightly better than the tf-idf, since word to vec bases its search also on the context of the words trying in this way to look for a syntactic and semantic similarity between the various concepts, while the tf-idf bases its search only on an exact word match between input string and data.
+In the *get_results* file we can see some tests of both tecnologies. We see that in general the word to vec tecnology seems work slightly better than the tf-idf, since word to vec bases its search also on the **context of the words** trying in this way to look for a syntactic and semantic similarity between the various concepts, while the tf-idf bases its search only on an exact word match between input string and data.
 
 Here some example results:
 
